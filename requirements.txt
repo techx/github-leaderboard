@@ -1,0 +1,3 @@
+PyGithub==1.33
+Flask==0.11.1
+greenclock==0.2.1

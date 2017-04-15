@@ -12,9 +12,9 @@ def GithubPoller():
 
 @app.route("/")
 def hello():
-    return "Hello World!"
+	return "Hello World!"
 
 if __name__ == "__main__":
 	scheduler = greenclock.Scheduler(logger_name='task_scheduler')
 	scheduler.schedule('GithubPollTask', greenclock.every_second(GITHUB_POLL_TIMER), GithubPoller)
-    app.run(host="0.0.0.0", port=80, debug=True)
+	app.run(host="0.0.0.0", port=80, debug=True)

@@ -4,21 +4,33 @@
     <meta charset="UTF-8">
     <title>TechX Github Leaderboard</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="toast.css">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="tik.css">
 
-    <script src="tickclock.js"></script>
+    <script src="tikclock.js"></script>
+    <script src="dash.js"></script>
   </head>
   <body>
     <div class="container">
       <div class="grid">
         <div class="unit one-of-three">
-					<div id="clock"></div>
+          <div id="date">
+            <h1 id="date-string">date</h1> 
+          </div>
+          <div id="clock"></div>
+          <div id="events">
+            <h1>events</h1>
+            <div id="coming-soon">
+              <i>coming soon</i>
+            </div>
+          </div>
         </div>
 
-				<div class="unit two-of-three">
-          <h1>Commits</h1>
-				</div>
+        <div class="unit two-of-three">
+          <h1>commits this week</h1>
+        </div>
       </div>
     </div>
   </body>

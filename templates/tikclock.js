@@ -20,6 +20,9 @@ var TickClock = (function() {
   function initTickClock(parentId) {
     // populate the html
     populateHtml(parentId);
+    var br = document.createElement('br');
+    br.className = 'clear';
+    document.getElementById(parentId).appendChild(br);
 
     // size the clock properly
     resizeClock(parentId);

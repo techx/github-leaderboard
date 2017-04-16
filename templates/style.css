@@ -1,18 +1,32 @@
 body {
   padding-top: 2rem;
+  font-family: Open Sans;
 }
 
-#clock {
-	width: 100%;
+h1 {
+  font-size: 2rem;
+  font-weight: 300;
+  text-transform: lowercase;
+  margin-bottom: 0;
 }
 
-.tick-section {
-	float: left;
+.clear {
+  clear: both;
 }
 
-.tick-cell {
-	background: red;
-	border: 1px solid white;
-	border-radius: 3px;
-	float: left;
+#date {
+  margin-bottom: 0;
+}
+
+#date h1 {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+#events {
+  margin-top: 1rem;
+}
+
+#coming-soon {
+  margin-top: 1rem;
 }

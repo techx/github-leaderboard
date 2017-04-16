@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/tik.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/static/js/vendor/moment.js"></script>
     <script src="/static/js/tikclock.js"></script>
     <script src="/static/js/dash.js"></script>
   </head>
@@ -18,19 +19,17 @@
       <div class="grid">
         <div class="unit one-of-three">
           <div id="date">
-            <h1 id="date-string">date</h1> 
+            <h1 id="date-string">Date</h1> 
           </div>
           <div id="clock"></div>
           <div id="events">
-            <h1>events</h1>
-            <div id="coming-soon">
-              <i>coming soon</i>
-            </div>
+            <h1>Events</h1>
+            <div id="event-list"></div>
           </div>
         </div>
 
         <div class="unit two-of-three">
-          <h1>commits this week</h1>
+          <h1>Commits this week</h1>
           <ol id="leaderboard" class="contributors"></ol>
         </div>
       </div>

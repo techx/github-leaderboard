@@ -59,6 +59,7 @@ ol.contributors li {
 
 ol.contributors li a.username {
 	font-weight: bold;
+  text-transform: lowercase;
 }
 
 .commits {
@@ -68,4 +69,12 @@ ol.contributors li a.username {
 a {
   text-decoration: none;
   color: black;
+}
+
+#event-list {
+  margin-top: 1rem;
+}
+
+.techx-event {
+  text-transform: lowercase;
 }

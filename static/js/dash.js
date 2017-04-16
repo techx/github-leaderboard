@@ -2,6 +2,9 @@ var Dash = (function() {
   // config
   var DATE_UPDATE_FREQUENCY = 5000;
   var COMMIT_UPDATE_FREQUENCY = 5 * 60 * 1000;
+  var EVENT_FREQUENCY = 60 * 60 * 1000;
+  var LEADERBOARD_API = '/api/leaderboard';
+  var EVENTS_API = '/api/events';
   var TOP_X = 5; // displays top this many contributors
   var GITHUB_URL = function(name) {
     return 'https://github.com/' + name;
@@ -18,7 +21,7 @@ var Dash = (function() {
   function initDash() {
     initDate();
     initEvents();
-    initCommits();
+    initLeaderboard();
   }
 
   function initDate() {
@@ -39,17 +42,18 @@ var Dash = (function() {
   }
 
   function initEvents() {
-    // TODO
+    updateEvents();
+    setInterval(updateEvents, EVENT_FREQUENCY);
   }
 
-  function initCommits() {
+  function initLeaderboard() {
     updateLeaderboard();
     setInterval(updateLeaderboard, COMMIT_UPDATE_FREQUENCY);
   }
 
   function updateLeaderboard() {
     $.get(
-      '/api/panel'
+      LEADERBOARD_API
     ).done(function(raw) {
       var data = JSON.parse(raw);
       if ('leaderboard' in data) {
@@ -60,6 +64,18 @@ var Dash = (function() {
     });
   }
 
+  function updateEvents() {
+    $.get(
+      EVENTS_API
+    ).done(function(raw) {
+      var data = JSON.parse(raw);
+      if ('events' in data) {
+        populateEvents(data.events);
+      } else {
+        // uh-oh
+      }
+    });
+  }
 
   // Populates the leaderboard with the provided leaders.
   // @param leaders a [{username: ..., commits: ...}, ...]
@@ -111,6 +127,30 @@ var Dash = (function() {
       li.append(' commits ');
       document.getElementById('leaderboard').appendChild(li);
     }
+  }
+
+  function populateEvents(allEvents) {
+    document.getElementById('event-list').innerHTML = '';
+
+    for (var i = 0; i < allEvents.length; i++) {
+      var ev = allEvents[i];
+      var el = getEventDom(ev);
+      document.getElementById('event-list').appendChild(el);
+    }
+  }
+
+  function getEventDom(e) {
+    var dateString = moment(new Date(e.date)).format(
+      'ddd h:mm a'
+    );
+    var div = document.createElement('div');
+    div.className = 'techx-event';
+    var b = document.createElement('b');
+    b.innerHTML = dateString + ' ';
+    div.appendChild(b);
+    div.style.marginBottom = '0.5rem';
+    div.append(' \u00B7 ' + e.name);
+    return div;
   }
   
   return {

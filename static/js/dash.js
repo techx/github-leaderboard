@@ -63,7 +63,6 @@ var Dash = (function() {
   function populateLeaderboard(leaders) {
     // clear the old leaderboard
     document.getElementById('leaderboard').innerHTML = '';
-    document.getElementById('others').innerHTML = '';
 
     // add the provided leaders
     for (var i = 0; i < Math.min(TOP_X, leaders.length); i++) {
@@ -90,6 +89,9 @@ var Dash = (function() {
         count += leaders[i].commits;
       }
 
+      // incidental similarity with the above block of
+      // similar code; conscious choice to not abstract
+      // to a reusable function
       var li = document.createElement('li'); 
       var username = document.createElement('span'); 
       username.className = 'username';
@@ -97,7 +99,8 @@ var Dash = (function() {
       var commits = document.createElement('span'); 
       commits.className = 'commits';
       commits.innerHTML = count;
-      li.appendChild(document.createTextNode('\u00A0\u00A0\u00A0'));
+      var space = '\u00A0\u00A0\u00A0';
+      li.appendChild(document.createTextNode(space));
       li.appendChild(username);
       li.append(' with ');
       li.appendChild(commits);

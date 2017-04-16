@@ -1,8 +1,10 @@
+ORG_NAME = "techx"
+
 from github import Github
 from credentials import token
 
 g = Github(token)
-org = g.get_organization("techx")
+org = g.get_organization(ORG_NAME)
 
 def get_commits(num_weeks, debug=False):
     contribs = {}

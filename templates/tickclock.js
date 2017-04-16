@@ -1,3 +1,8 @@
+// Tik clock in JS
+// @author Anthony Liu
+// @date 2017/04/15
+// @license MIT
+
 var TickClock = (function() {
   // config
   var COL_HEIGHT = 3;
@@ -109,9 +114,7 @@ var TickClock = (function() {
   }
 
   function permute(arr) {
-    arr.sort(function(a, b) {
-      return Math.random() - 0.5;
-    });
+    arr.sort(function(a, b) {return Math.random() - 0.5});
     return arr;
   }
 
@@ -129,5 +132,6 @@ var TickClock = (function() {
 })();
 
 window.addEventListener('load', function() {
-  TickClock.init('clock');
+  var parentId = 'clock';
+  TickClock.init(parentId);
 });

@@ -4,7 +4,7 @@ body {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.4rem;
   font-weight: 300;
   text-transform: lowercase;
   margin-bottom: 0;
@@ -18,15 +18,45 @@ h1 {
   margin-bottom: 0;
 }
 
+#clock {
+	margin-top: 2rem;
+}
+
 #date h1 {
   margin-bottom: 1rem;
   text-align: left;
 }
 
 #events {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 #coming-soon {
   margin-top: 1rem;
+}
+
+ol.contributors {
+  list-style-type: none;
+  list-style-position: inside;
+  margin-top: 2rem;
+	counter-reset: level1;
+}
+
+ol.contributors li:before {
+	content: "0" counter(level1) " ";
+	counter-increment: level1;
+}
+
+ol.contributors li {
+	
+}
+
+ol.contributors li {
+	font-family: "Roboto Mono";
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+}
+
+ol.contributors li span.username {
+	font-weight: bold;
 }

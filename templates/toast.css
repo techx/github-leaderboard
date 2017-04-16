@@ -84,7 +84,7 @@
 .three-of-five { width: 57%; }
 .four-of-five { width: 77%; }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 750px) {
 	.grid {
 		margin-left: 0;
 		max-width: none;

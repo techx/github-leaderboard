@@ -24,17 +24,17 @@ var Dash = (function() {
   function updateDate() {
     var d = new Date();
     var yearOffset = 1900;
-    var month = MONTH_NAMES[d.getMonth()];
+    var month = d.getMonth() + 1;
     var day = d.getDate();
     var year = yearOffset + d.getYear();
-    var dateString = month + ' ' + day + ', ' + year;
+    var dateString = month + '.' + day + '.' + year;
     document.getElementById(
       'date-string'
     ).innerHTML = dateString;
   }
 
   function initEvents() {
-
+    // TODO
   }
 
   function initCommits() {

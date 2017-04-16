@@ -1,8 +1,11 @@
 var Dash = (function() {
   // config
   var DATE_UPDATE_FREQUENCY = 5000;
-  var COMMIT_UPDATE_FREQUENCY = 10*1000;
+  var COMMIT_UPDATE_FREQUENCY = 5 * 60 * 1000;
   var TOP_X = 5; // displays top this many contributors
+  var GITHUB_URL = function(name) {
+    return 'https://github.com/' + name;
+  };
 
   // constants
   var MONTH_NAMES = [
@@ -41,7 +44,7 @@ var Dash = (function() {
 
   function initCommits() {
     updateLeaderboard();
-    // setInterval(updateLeaderboard, COMMIT_UPDATE_FREQUENCY);
+    setInterval(updateLeaderboard, COMMIT_UPDATE_FREQUENCY);
   }
 
   function updateLeaderboard() {
@@ -69,7 +72,8 @@ var Dash = (function() {
       var leader = leaders[i];
       var li = document.createElement('li'); 
       li.className = 'normal';
-      var username = document.createElement('span'); 
+      var username = document.createElement('a');
+      username.href = GITHUB_URL(leader.name);
       username.className = 'username';
       username.innerHTML = leader.name;
       var commits = document.createElement('span'); 

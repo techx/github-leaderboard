@@ -57,10 +57,15 @@ ol.contributors li {
 	margin-bottom: 1rem;
 }
 
-ol.contributors li span.username {
+ol.contributors li a.username {
 	font-weight: bold;
 }
 
 .commits {
   color: #30a551;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }

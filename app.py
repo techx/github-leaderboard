@@ -71,7 +71,7 @@ def leaderboard_api():
 @app.route("/api/events")
 def events_api():
     return json.dumps({
-            "events": get_events()
+            "events": get_events()[:2]
         })
 
 @app.route("/")

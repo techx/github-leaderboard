@@ -3,6 +3,9 @@ var TickClock = (function() {
   var COL_HEIGHT = 3;
   var SECTIONS = [1, 3, 2, 3]; // left to right, hours to minutes
   var BUFFER_IN_PX = 10; // between sections
+  var TICK_FREQUENCY = 1000;
+  var ON_COLOR = '#d03035';
+  var OFF_COLOR = '#cdcdcd';
 
   // constants
   var NUM_COLS = SECTIONS.reduce(function(a, b) {
@@ -17,7 +20,8 @@ var TickClock = (function() {
     resizeClock(parentId);
 
     // start ticking!
-    setInterval(updateClock, 1000);
+    updateClock();
+    setInterval(updateClock, TICK_FREQUENCY);
 
     // dynamically resize
     window.addEventListener('resize', function() {
@@ -81,63 +85,42 @@ var TickClock = (function() {
     var d = new Date();
     var hours = d.getHours();
     var minutes = d.getMinutes();
-    setTickHoursTen(Math.floor(hours / 10));
-    setTickHoursOne(hours % 10);
-    setTickMinutesTen(Math.floor(minutes / 10));
-    setTickMinutesOne(minutes % 10);
+    setSection(0, Math.floor(hours / 10));
+    setSection(1, hours % 10);
+    setSection(2, Math.floor(minutes / 10));
+    setSection(3, minutes % 10);
   }
 
   function clearClock() {
-    for (var i = 0; i < 3; i++)   {
-      clearCell('hours-tens-' + i);
-    }
-    for (var i = 0; i < 9; i++)   {
-      clearCell('hours-ones-' + i);
-    }
-    for (var i = 0; i < 6; i++)   {
-      clearCell('minutes-tens-' + i);
-    }
-    for (var i = 0; i < 9; i++)   {
-      clearCell('minutes-ones-' + i);
-    }
-  }
-
-  function setTickHoursTen(n) {
-    permute([0, 1, 2]).slice(0, n).map(function(i) {
-      colorCell('hours-tens-' + i);
-    });
-  }
-  function setTickHoursOne(n) {
-    permute([0, 1, 2, 3, 4, 5, 6, 7, 8]).slice(0, n).map(function(i) {
-      colorCell('hours-ones-' + i);
-    });
-  }
-  function setTickMinutesTen(n) {
-    permute([0, 1, 2, 3, 4, 5]).slice(0, n).map(function(i) {
-      colorCell('minutes-tens-' + i);
+    SECTIONS.map(function(count, index) {
+      for (var i = 0; i < count * COL_HEIGHT; i++) {
+        clearCell('tick-cell-' + index + '-' + i);
+      }
     });
   }
 
-  function setTickMinutesOne(n) {
-    permute([0, 1, 2, 3, 4, 5, 6, 7, 8]).slice(0, n).map(function(i) {
-      colorCell('minutes-ones-' + i);
+  function setSection(index, n) {
+    var numCells = SECTIONS[index] * COL_HEIGHT;
+    var arr = [];
+    for (var i = 0; i < numCells; i++) arr.push(i);
+    permute(arr).slice(0, n).map(function(i) {
+      colorCell('tick-cell-' + index + '-' + i);
     });
   }
 
   function permute(arr) {
-    var comparer = function(a, b) {
-      return 2 * Math.random() - 1;
-    };
-    arr.sort(comparer);
+    arr.sort(function(a, b) {
+      return Math.random() - 0.5;
+    });
     return arr;
   }
 
   function colorCell(id) {
-    document.getElementById(id).style.background = 'red';
+    document.getElementById(id).style.background = ON_COLOR;
   }
 
   function clearCell(id) {
-    document.getElementById(id).style.background = 'blue';
+    document.getElementById(id).style.background = OFF_COLOR;
   }
 
   return {

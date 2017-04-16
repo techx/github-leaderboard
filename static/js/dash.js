@@ -5,7 +5,7 @@ var Dash = (function() {
   var EVENT_FREQUENCY = 60 * 60 * 1000;
   var LEADERBOARD_API = '/api/leaderboard';
   var EVENTS_API = '/api/events';
-  var TOP_X = 5; // displays top this many contributors
+  var TOP_X = 6; // displays top this many contributors
   var GITHUB_URL = function(name) {
     return 'https://github.com/' + name;
   };
@@ -57,8 +57,8 @@ var Dash = (function() {
     ).done(function(raw) {
       var data = JSON.parse(raw);
       if ('leaderboard' in data) {
-        populateLeaderboard('week-leaderboard', data.leaderboard.week);
-        populateLeaderboard('all-time-leaderboard', data.leaderboard.all_time);
+        populateLeaderboard('week-leaderboard', data.leaderboard.week, {display_others: true});
+        populateLeaderboard('all-time-leaderboard', data.leaderboard.all_time, {hide_commits: true});
       } else {
         // uh-oh
       }
@@ -80,7 +80,7 @@ var Dash = (function() {
 
   // Populates the leaderboard with the provided leaders.
   // @param leaders a [{username: ..., commits: ...}, ...]
-  function populateLeaderboard(leaderboard, leaders) {
+  function populateLeaderboard(leaderboard, leaders, options) {
     // clear the old leaderboard
     document.getElementById(leaderboard).innerHTML = '';
 
@@ -93,18 +93,20 @@ var Dash = (function() {
       username.href = GITHUB_URL(leader.name);
       username.className = 'username';
       username.innerHTML = leader.name;
-      var commits = document.createElement('span'); 
-      commits.className = 'commits';
-      commits.innerHTML = leader.commits;
       li.appendChild(username);
-      li.append(' with ');
-      li.appendChild(commits);
-      li.append(' commits ');
+      if (!options.hide_commits) {
+        var commits = document.createElement('span'); 
+        commits.className = 'commits';
+        commits.innerHTML = leader.commits;
+        li.append(' with ');
+        li.appendChild(commits);
+        li.append(' commits ');
+      }
       document.getElementById(leaderboard).appendChild(li);
     }
 
     // display other contributors
-    if (leaders.length > TOP_X) {
+    if (options.display_others && leaders.length > TOP_X) {
       var count = 0;
       for (var i = TOP_X; i < leaders.length; i++) {
         count += leaders[i].commits;

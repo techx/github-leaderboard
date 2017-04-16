@@ -31,15 +31,15 @@ def get_commits(num_weeks, debug=False):
                 if i >= num_weeks:
                     break
                 aggr += w.c # Count commits
-            if c.author.name in contribs:
-                contribs[c.author.name] += aggr
+            if c.author.login in contribs:
+                contribs[c.author.login] += aggr
             else:
-                contribs[c.author.name] = aggr
+                contribs[c.author.login] = aggr
 
             if debug:
-                print c.author.name, aggr
+                print c.author.login, aggr
 
-            images[c.author.name] = c.author.avatar_url
+            images[c.author.login] = c.author.avatar_url
 
     ordered = []
     for w in sorted(contribs, key=contribs.get, reverse=True):

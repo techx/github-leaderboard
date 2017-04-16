@@ -56,16 +56,22 @@ def run_scheduler_cont():
                 time.sleep(10)
 
     continuous_thread = ScheduleThread()
+    continuous_thread.daemon = True
     continuous_thread.start()
     return cease_continuous_run
 
 ## Routes
 
-@app.route("/api/panel")
-def meta_api():
+@app.route("/api/leaderboard")
+def leaderboard_api():
     return json.dumps({
-            "leaderboard": leaderboard,
-            "events": get_events()[:NUM_EVENTS]
+            "leaderboard": leaderboard
+        })
+
+@app.route("/api/events")
+def events_api():
+    return json.dumps({
+            "events": get_events()
         })
 
 @app.route("/")

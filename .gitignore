@@ -1,3 +1,3 @@
 credentials.py
-private/
 *.pyc
+leaderboard_cache.p

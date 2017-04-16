@@ -4,7 +4,7 @@ PORT = 8000
 GITHUB_POLL_TIMER = 600 # seconds
 STORE = "private/leaderboard_cache.p"
 NUM_WEEKS = 2 # show leaderboard for 2 weeks, TO-DO: make this configurable from the front-end
-
+NUM_EVENTS = 2 
 
 ## Init
 import schedule
@@ -15,6 +15,7 @@ import os
 import threading
 from flask import Flask, render_template
 from stats import *
+from calendar_helper import *
 
 app = Flask(__name__)
 
@@ -63,7 +64,8 @@ def run_scheduler_cont():
 @app.route("/api/panel")
 def meta_api():
     return json.dumps({
-            "leaderboard": leaderboard
+            "leaderboard": leaderboard,
+            "events": get_events()[:NUM_EVENTS]
         })
 
 @app.route("/")

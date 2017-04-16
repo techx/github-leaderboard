@@ -47,17 +47,18 @@ var Dash = (function() {
   }
 
   function initLeaderboard() {
-    updateLeaderboard();
-    setInterval(updateLeaderboard, COMMIT_UPDATE_FREQUENCY);
+    updateLeaderboards();
+    setInterval(updateLeaderboards, COMMIT_UPDATE_FREQUENCY);
   }
 
-  function updateLeaderboard() {
+  function updateLeaderboards() {
     $.get(
       LEADERBOARD_API
     ).done(function(raw) {
       var data = JSON.parse(raw);
       if ('leaderboard' in data) {
-        populateLeaderboard(data.leaderboard);
+        populateLeaderboard('week-leaderboard', data.leaderboard.week);
+        populateLeaderboard('all-time-leaderboard', data.leaderboard.all_time);
       } else {
         // uh-oh
       }
@@ -79,9 +80,9 @@ var Dash = (function() {
 
   // Populates the leaderboard with the provided leaders.
   // @param leaders a [{username: ..., commits: ...}, ...]
-  function populateLeaderboard(leaders) {
+  function populateLeaderboard(leaderboard, leaders) {
     // clear the old leaderboard
-    document.getElementById('leaderboard').innerHTML = '';
+    document.getElementById(leaderboard).innerHTML = '';
 
     // add the provided leaders
     for (var i = 0; i < Math.min(TOP_X, leaders.length); i++) {
@@ -99,7 +100,7 @@ var Dash = (function() {
       li.append(' with ');
       li.appendChild(commits);
       li.append(' commits ');
-      document.getElementById('leaderboard').appendChild(li);
+      document.getElementById(leaderboard).appendChild(li);
     }
 
     // display other contributors
@@ -125,7 +126,7 @@ var Dash = (function() {
       li.append(' with ');
       li.appendChild(commits);
       li.append(' commits ');
-      document.getElementById('leaderboard').appendChild(li);
+      document.getElementById(leaderboard).appendChild(li);
     }
   }
 

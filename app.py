@@ -21,7 +21,10 @@ app = Flask(__name__)
 
 # Returns the leaderboard from GitHub
 def get_leaderboard():
-    ret = get_commits(NUM_WEEKS)
+    ret = {
+        'week': get_commits(NUM_WEEKS),
+        'all_time': get_commits(100000000000)
+    }
     with open(STORE, "wb") as file:
         pickle.dump(ret, file)
 

@@ -2,3 +2,4 @@ PyGithub==1.33
 Flask==0.11.1
 schedule==0.4.2
 google-api-python-client==1.6.2
+httplib2==0.10.3

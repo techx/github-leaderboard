@@ -1,6 +1,6 @@
 ## Config
 
-PORT = 80
+PORT = 8000
 GITHUB_POLL_TIMER = 600 # seconds
 STORE = "private/leaderboard_cache.p"
 NUM_WEEKS = 2 # show leaderboard for 2 weeks, TO-DO: make this configurable from the front-end
@@ -75,4 +75,4 @@ def main_panel():
 if __name__ == "__main__":
     schedule.every(GITHUB_POLL_TIMER).seconds.do(GithubPoller)
     run_scheduler_cont()
-    app.run(host="0.0.0.0", port=80, debug=False)
+    app.run(host="0.0.0.0", port=PORT, debug=False)

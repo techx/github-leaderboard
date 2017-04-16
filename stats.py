@@ -6,9 +6,11 @@ from credentials import token
 g = Github(token)
 org = g.get_organization(ORG_NAME)
 
-def get_commits(num_weeks, debug=False):
+def get_commits(num_weeks, debug=False, limit=20):
     contribs = {}
     images = {}
+
+    all_time = {}
 
     print "Fetching From Github ..."
 
@@ -38,17 +40,33 @@ def get_commits(num_weeks, debug=False):
             else:
                 contribs[c.author.login] = aggr
 
+            aggr = 0
+            for w in weeks:
+                aggr += w.c
+
+            if c.author.login in all_time:
+                all_time[c.author.login] += aggr
+            else:
+                all_time[c.author.login] = aggr
+
             if debug:
                 print c.author.login, aggr
 
             images[c.author.login] = c.author.avatar_url
 
-    ordered = []
+    ordered_week = []
     for w in sorted(contribs, key=contribs.get, reverse=True):
         if contribs[w] == 0:
             break
-        ordered.append({"name": w, "commits": contribs[w], "avatar": images[w]})
-    return ordered[:10]
+        ordered_week.append({"name": w, "commits": contribs[w], "avatar": images[w]})
+
+    ordered_alltime = []
+    for w in sorted(all_time, key=all_time.get, reverse=True):
+        if all_time[w] == 0:
+            break
+        ordered_alltime.append({"name": w, "commits": all_time[w], "avatar": images[w]})
+
+    return {"week": ordered_week[:limit], "all_time": ordered_alltime[:limit]}
 
 if __name__ == "__main__":
     commits = get_commits(2)[:10]

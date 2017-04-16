@@ -1,7 +1,7 @@
 var Dash = (function() {
   // config
   var DATE_UPDATE_FREQUENCY = 5000;
-  var COMMIT_UPDATE_FREQUENCY = 10*1000;
+  var COMMIT_UPDATE_FREQUENCY = 5 * 60 * 1000;
   var TOP_X = 5; // displays top this many contributors
 
   // constants
@@ -41,7 +41,7 @@ var Dash = (function() {
 
   function initCommits() {
     updateLeaderboard();
-    // setInterval(updateLeaderboard, COMMIT_UPDATE_FREQUENCY);
+    setInterval(updateLeaderboard, COMMIT_UPDATE_FREQUENCY);
   }
 
   function updateLeaderboard() {

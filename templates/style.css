@@ -1,0 +1,18 @@
+body {
+  padding-top: 2rem;
+}
+
+#clock {
+	width: 100%;
+}
+
+.tick-section {
+	float: left;
+}
+
+.tick-cell {
+	background: red;
+	border: 1px solid #cdcdcd;
+	border-radius: 2px;
+	float: left;
+}

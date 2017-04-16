@@ -49,3 +49,8 @@ def get_commits(num_weeks, debug=False):
             break
         ordered.append({"name": w, "commits": contribs[w], "avatar": images[w]})
     return ordered[:10]
+
+if __name__ == "__main__":
+    commits = get_commits(2)[:10]
+    for commit in commits:
+        print commit

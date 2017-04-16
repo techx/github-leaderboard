@@ -6,6 +6,9 @@ org = g.get_organization("techx")
 
 def get_commits(num_weeks):
     contribs = {}
+    images = {}
+
+    print "Fetching From Github ..."
 
     for repo in org.get_repos():
         conts = repo.get_stats_contributors()
@@ -21,9 +24,9 @@ def get_commits(num_weeks):
                 contribs[c.author.name] += aggr
             else:
                 contribs[c.author.name] = aggr
-        print ""
+            images[c.author.name] = c.author.avatar_url
 
     ordered = []
     for w in sorted(contribs, key=contribs.get, reverse=True):
-        ordered.append({"name": w, "commits": contribs[w]})
+        ordered.append({"name": w, "commits": contribs[w], "avatar": images[w]})
     return ordered

@@ -2,6 +2,7 @@ var Dash = (function() {
   // config
   var DATE_UPDATE_FREQUENCY = 5000;
   var COMMIT_UPDATE_FREQUENCY = 10*1000;
+  var TOP_X = 5; // displays top this many contributors
 
   // constants
   var MONTH_NAMES = [
@@ -62,10 +63,13 @@ var Dash = (function() {
   function populateLeaderboard(leaders) {
     // clear the old leaderboard
     document.getElementById('leaderboard').innerHTML = '';
+    document.getElementById('others').innerHTML = '';
 
     // add the provided leaders
-    leaders.forEach(function(leader) {
+    for (var i = 0; i < Math.min(TOP_X, leaders.length); i++) {
+      var leader = leaders[i];
       var li = document.createElement('li'); 
+      li.className = 'normal';
       var username = document.createElement('span'); 
       username.className = 'username';
       username.innerHTML = leader.name;
@@ -77,7 +81,29 @@ var Dash = (function() {
       li.appendChild(commits);
       li.append(' commits ');
       document.getElementById('leaderboard').appendChild(li);
-    });
+    }
+
+    // display other contributors
+    if (leaders.length > TOP_X) {
+      var count = 0;
+      for (var i = TOP_X; i < leaders.length; i++) {
+        count += leaders[i].commits;
+      }
+
+      var li = document.createElement('li'); 
+      var username = document.createElement('span'); 
+      username.className = 'username';
+      username.innerHTML = 'Others';
+      var commits = document.createElement('span'); 
+      commits.className = 'commits';
+      commits.innerHTML = count;
+      li.appendChild(document.createTextNode('\u00A0\u00A0\u00A0'));
+      li.appendChild(username);
+      li.append(' with ');
+      li.appendChild(commits);
+      li.append(' commits ');
+      document.getElementById('leaderboard').appendChild(li);
+    }
   }
   
   return {

@@ -42,7 +42,7 @@ ol.contributors {
 	counter-reset: level1;
 }
 
-ol.contributors li:before {
+ol.contributors li.normal:before {
 	content: "0" counter(level1) " ";
 	counter-increment: level1;
 }
@@ -59,4 +59,8 @@ ol.contributors li {
 
 ol.contributors li span.username {
 	font-weight: bold;
+}
+
+.commits {
+  color: #30a551;
 }

@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     <link rel="stylesheet" type="text/css" href="/static/css/tik.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="/static/js/tikclock.js"></script>
     <script src="/static/js/dash.js"></script>
   </head>
@@ -30,23 +31,7 @@
 
         <div class="unit two-of-three">
           <h1>commits this week</h1>
-          <ol class="contributors">
-            <li>
-              <span class="username">turbomaze</span> with 14 commits
-            </li>
-            <li>
-              <span class="username">revalo</span> with 12 commits
-            </li>
-            <li>
-              <span class="username">jjz</span> with 11 commits
-            </li>
-            <li>
-              <span class="username">moinnadeem</span> with 2 commits
-            </li>
-            <li>
-              <span class="username">vahidfazelrezai</span> with 2 commits
-            </li>
-          </ol>
+          <ol id="leaderboard" class="contributors"></ol>
         </div>
       </div>
     </div>

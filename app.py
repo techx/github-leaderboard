@@ -1,9 +1,9 @@
 ## Config
 
 PORT = 80
-GITHUB_POLL_TIMER = 60 # seconds
+GITHUB_POLL_TIMER = 600 # seconds
 STORE = "private/leaderboard_cache.p"
-NUM_WEEKS = 1 # show leaderboard for 1 week, TO-DO: make this configurable from the front-end
+NUM_WEEKS = 2 # show leaderboard for 2 weeks, TO-DO: make this configurable from the front-end
 
 
 ## Init
@@ -68,7 +68,7 @@ def meta_api():
 
 @app.route("/")
 def main_panel():
-    return render_template("panel.html")
+    return render_template("main.html")
 
 
 ## Main

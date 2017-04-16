@@ -1,22 +1,33 @@
 from github import Github
-from credentials import username, password
+from credentials import token
 
-g = Github(username, password)
+g = Github(token)
 org = g.get_organization("techx")
 
-def get_commits(num_weeks):
+def get_commits(num_weeks, debug=False):
     contribs = {}
     images = {}
 
     print "Fetching From Github ..."
 
-    for repo in org.get_repos():
+    for repo in org.get_repos(type="all"):
         conts = repo.get_stats_contributors()
+
         if conts is None:
             continue
+
+        if debug:
+            print ""
+            print repo.name
+
         for c in conts:
             aggr = 0
-            for w, i in zip(c.weeks, range(len(c.weeks))):
+            weeks = sorted(c.weeks, key=lambda w: w.w, reverse=True)
+
+            if debug:
+                print weeks[0].w
+
+            for w, i in zip(weeks, range(len(weeks))):
                 if i >= num_weeks:
                     break
                 aggr += w.c # Count commits
@@ -24,9 +35,15 @@ def get_commits(num_weeks):
                 contribs[c.author.name] += aggr
             else:
                 contribs[c.author.name] = aggr
+
+            if debug:
+                print c.author.name, aggr
+
             images[c.author.name] = c.author.avatar_url
 
     ordered = []
     for w in sorted(contribs, key=contribs.get, reverse=True):
+        if contribs[w] == 0:
+            break
         ordered.append({"name": w, "commits": contribs[w], "avatar": images[w]})
-    return ordered
+    return ordered[:10]

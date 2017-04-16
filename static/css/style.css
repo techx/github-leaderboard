@@ -4,7 +4,7 @@ body {
 }
 
 h1 {
-  font-size: 2.4rem;
+  font-size: 2.3rem;
   font-weight: 300;
   text-transform: lowercase;
   margin-bottom: 0;
@@ -53,7 +53,7 @@ ol.contributors li {
 
 ol.contributors li {
 	font-family: "Roboto Mono";
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	margin-bottom: 1rem;
 }
 

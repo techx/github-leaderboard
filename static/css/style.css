@@ -60,3 +60,7 @@ ol.contributors li {
 ol.contributors li span.username {
 	font-weight: bold;
 }
+
+.commits {
+  color: #30a551;
+}

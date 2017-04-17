@@ -44,3 +44,7 @@ python app.py
 ```
 
 This app uses sticky sessions and a persistant background thread and storage. Use appropriate deployment methods.
+
+## License
+
+MIT License

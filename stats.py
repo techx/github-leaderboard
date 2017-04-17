@@ -2,6 +2,7 @@ ORG_NAME = "techx"
 
 from github import Github
 from credentials import token
+import time
 
 g = Github(token)
 org = g.get_organization(ORG_NAME)
@@ -22,6 +23,8 @@ def get_commits(num_weeks, debug=False, limit=20):
 
             while conts is None:
                 conts = repo.get_stats_contributors()
+                if conts is None:
+                    time.sleep(1)
             count += 1
 
             if debug:

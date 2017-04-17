@@ -3,8 +3,15 @@ body {
   font-family: Open Sans;
 }
 
-.clock-panel { width: 28.05%; }
-.week-panel { width: 37.16%; }
+.container {
+  margin-top: 2rem;
+}
+
+.clock-panel {
+  width: 27.05%;
+  margin-right: 8%;
+}
+.week-panel { width: 57.16%; }
 .all-time-panel { width: 25.36%; }
 
 h1 {

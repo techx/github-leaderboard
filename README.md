@@ -9,7 +9,7 @@ A web application that shows various useful information for the office, like upc
 ## Deploy
 
 ### Credentials
-Either grab the `credentials.py` file from the [TechX Google Drive](https://drive.google.com/drive/folders/0B_1TM7HzBrvcTmwzMVQtWi1CN1k?usp=sharing), or follow the instrcutions below.
+Either grab the `credentials.py` file from the [TechX Google Drive](https://drive.google.com/drive/folders/0B_1TM7HzBrvcTmwzMVQtWi1CN1k?usp=sharing), or follow the instructions below.
 
 First create a `credentials.py` in the root directory of the project. The contents of the file look like this:
 ```python
@@ -43,7 +43,10 @@ Then run,
 python app.py
 ```
 
-This app uses sticky sessions and a persistant background thread and storage. Use appropriate deployment methods.
+This app uses sticky sessions and a persistant background thread and storage. Use appropriate deployment methods. The default run uses Flask's internal wsgi server. You can use a production ready server like gunicorn with only a single worker thread as well,
+```
+gunicorn -w 1 -b 0.0.0.0:80 app:app
+```
 
 ## License
 

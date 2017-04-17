@@ -1,7 +1,7 @@
 ## Config
 
 PORT = 8000
-GITHUB_POLL_TIMER = 600 # seconds
+GITHUB_POLL_TIMER = 120 # seconds
 STORE = "private/leaderboard_cache.p"
 NUM_WEEKS = 2 # show leaderboard for 2 weeks, TO-DO: make this configurable from the front-end
 NUM_EVENTS = 2 

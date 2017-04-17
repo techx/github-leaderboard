@@ -18,11 +18,11 @@ def get_commits(num_weeks, debug=False, limit=20):
 
         all_time = {}
         for repo in org.get_repos(type="all"):
-            conts = repo.get_stats_contributors()
-            count += 1
+            conts = None
 
-            if conts is None:
-                continue
+            while conts is None:
+                conts = repo.get_stats_contributors()
+            count += 1
 
             if debug:
                 print ""

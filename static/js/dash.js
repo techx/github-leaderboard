@@ -28,7 +28,11 @@ var Dash = (function() {
 
   function initRefresh() {
     setTimeout(function() {
-      location.reload(true);
+      $.get(
+        LEADERBOARD_API
+      ).done(function(raw) {
+        location.reload(true);
+      });
     }, REFRESH_FREQUENCY);
   }
 

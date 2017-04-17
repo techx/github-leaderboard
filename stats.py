@@ -70,6 +70,7 @@ def get_commits(num_weeks, debug=False, limit=20):
                 break
             ordered_alltime.append({"name": w, "commits": all_time[w], "avatar": images[w]})
 
+        print "Github Fetch Complete"
         return {"week": ordered_week[:limit], "all_time": ordered_alltime[:limit]}
 
 if __name__ == "__main__":

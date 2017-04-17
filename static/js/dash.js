@@ -1,8 +1,9 @@
 var Dash = (function() {
   // config
   var DATE_UPDATE_FREQUENCY = 5000;
-  var COMMIT_UPDATE_FREQUENCY = 5 * 60 * 1000;
+  var COMMIT_UPDATE_FREQUENCY = 5 * 1000;
   var EVENT_FREQUENCY = 60 * 60 * 1000;
+  var REFRESH_FREQUENCY = 1 * 60 * 1000;
   var LEADERBOARD_API = '/api/leaderboard';
   var EVENTS_API = '/api/events';
   var TOP_X = 6; // displays top this many contributors
@@ -22,6 +23,13 @@ var Dash = (function() {
     initDate();
     initEvents();
     initLeaderboard();
+    initRefresh();
+  }
+
+  function initRefresh() {
+    setTimeout(function() {
+      location.reload(true);
+    }, REFRESH_FREQUENCY);
   }
 
   function initDate() {

@@ -78,9 +78,9 @@ def events_api():
 def main_panel():
     return render_template("main.html")
 
-
 ## Main
+schedule.every(GITHUB_POLL_TIMER).seconds.do(GithubPoller)
+run_scheduler_cont()
+
 if __name__ == "__main__":
-    schedule.every(GITHUB_POLL_TIMER).seconds.do(GithubPoller)
-    run_scheduler_cont()
     app.run(host="0.0.0.0", port=PORT, debug=False)

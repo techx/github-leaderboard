@@ -101,6 +101,12 @@ var Dash = (function() {
       var leader = leaders[i];
       var li = document.createElement('li'); 
       li.className = 'normal';
+      var avatar = document.createElement('img');
+      avatar.src = leader.avatar;
+      avatar.className = 'github-avatar';
+      avatar.width = 40;
+      avatar.height = avatar.width; // Square
+      li.appendChild(avatar);
       var username = document.createElement('a');
       username.href = GITHUB_URL(leader.name);
       username.className = 'username';

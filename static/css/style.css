@@ -91,3 +91,9 @@ a {
 .techx-event {
   text-transform: lowercase;
 }
+
+.github-avatar {
+  vertical-align: middle;
+  margin-right: 0.75rem;
+  border-radius: 2px;
+}

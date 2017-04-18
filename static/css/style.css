@@ -1,6 +1,8 @@
 body {
   padding-top: 2rem;
   font-family: Open Sans;
+  background-color: black;
+  color: white;
 }
 
 .container {
@@ -79,7 +81,7 @@ ol.contributors li a.username {
 
 a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 #event-list {

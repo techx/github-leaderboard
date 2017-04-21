@@ -3,7 +3,7 @@
 A web application that shows various useful information for the office, like upcoming events and a leaderboard counting the number of Github commits.
 
 <p align="center">
-	<img src="http://i.imgur.com/v38vfFu.png" />
+	<img src="http://i.imgur.com/Af0ESvZ.png" />
 </p>
 
 ## Deploy

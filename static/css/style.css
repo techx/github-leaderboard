@@ -1,8 +1,12 @@
 body {
   padding-top: 2rem;
   font-family: Open Sans;
-  background-color: black;
+  background-color: rgb(29, 29, 29);
   color: white;
+}
+
+.techx-blue-color {
+  color: #5083bf;
 }
 
 .container {
@@ -10,11 +14,10 @@ body {
 }
 
 .clock-panel {
-  width: 27.05%;
+  width: 33%;
   margin-right: 8%;
 }
-.week-panel { width: 57.16%; }
-.all-time-panel { width: 25.36%; }
+.week-panel { width: 52%; }
 
 h1 {
   font-size: 2.3rem;

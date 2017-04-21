@@ -168,9 +168,10 @@ var Dash = (function() {
     div.className = 'techx-event';
     var b = document.createElement('b');
     b.innerHTML = dateString + ' ';
+    b.className = 'techx-blue-color';
     div.appendChild(b);
     div.style.marginBottom = '0.5rem';
-    div.append(' \u00B7 ' + e.name);
+    div.append(' ' + e.name);
     return div;
   }
   

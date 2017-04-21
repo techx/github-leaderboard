@@ -9,7 +9,7 @@ var TickClock = (function() {
   var SECTIONS = [1, 3, 2, 3]; // left to right, hours to minutes
   var BUFFER_IN_PX = 10; // between sections
   var TICK_FREQUENCY = 1000;
-  var ON_COLOR = '#d03035';
+  var ON_COLOR = '#5083bf';
   var OFF_COLOR = '#cdcdcd';
 
   // constants

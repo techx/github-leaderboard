@@ -82,4 +82,4 @@ schedule.every(GITHUB_POLL_TIMER).seconds.do(GithubPoller)
 run_scheduler_cont()
 
 if __name__ == "__main__":
-    app.run(threaded=True, port=PORT, debug=False, host-"0.0.0.0")
+    app.run(threaded=True, port=PORT, debug=False, host="0.0.0.0")

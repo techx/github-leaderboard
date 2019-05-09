@@ -11,7 +11,6 @@ from oauth2client import tools, GOOGLE_TOKEN_URI, GOOGLE_REVOKE_URI
 from oauth2client.file import Storage
 
 import datetime
-
 def get_events():
     credentials = client.OAuth2Credentials(
     None, client_id, client_secret, refresh_token, None, GOOGLE_TOKEN_URI,
@@ -36,6 +35,5 @@ def get_events():
         ret.append({"date": start, "name": event['summary']})
 
     return ret
-
 if __name__ == "__main__":
     print get_events()

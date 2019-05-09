@@ -73,7 +73,6 @@ def events_api():
     return json.dumps({
             "events": get_events()[:2]
         })
-
 @app.route("/")
 def main_panel():
     return render_template("main.html")
@@ -83,4 +82,4 @@ schedule.every(GITHUB_POLL_TIMER).seconds.do(GithubPoller)
 run_scheduler_cont()
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=PORT, debug=False)
+    app.run(threaded=True, port=PORT, debug=False, host="0.0.0.0")

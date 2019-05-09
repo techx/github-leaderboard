@@ -8,11 +8,11 @@ g = Github(token)
 org = g.get_organization(ORG_NAME)
 
 def get_commits(num_weeks, debug=False, limit=20):
-    if org.total_private_repos is None and org.total_public_repos is not None:
+    if org.total_private_repos is None and org.public_repos is not None:
         total_repos = org.public_repos
-    elif org.total_public_repos is None and org.total_private_repos is not None:
+    elif org.public_repos is None and org.total_private_repos is not None:
         total_repos = org.total_private_repos
-    elif org.total_private_repos is None and org.total_public_repos is None:
+    elif org.total_private_repos is None and org.public_repos is None:
         total_repos = 0
     else:
         total_repos = org.public_repos + org.total_private_repos
